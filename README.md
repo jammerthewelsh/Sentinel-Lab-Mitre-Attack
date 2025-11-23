@@ -14,17 +14,20 @@ Query Language: KQL (Kusto Query Language)
 
 Step 1: Environment Setup & Hardening I configured a Windows 11 VM and connected it to Azure using Azure Arc. To ensure visibility into the attack, I enabled "Process Creation" auditing and command-line logging via the Windows Registry/Group Policy.
 
-https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/AD%20group%20policy.png
+<img src="https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/AD%20group%20policy.png" width="800" alt="Detection Evidence">
 
-Caption: Enabling Command Line Auditing to capture full argument strings.
 
 Step 2: The Attack (Simulation) I simulated an adversary using Base64 encoding to obfuscate a PowerShell command. This technique allows attackers to hide their actual intent (e.g., downloading malware) from basic text-based filters.
 
-https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/powershell%20simulated%20attack.png
+<img src="https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/powershell%20simulated%20attack.png" width="800" alt="Detection Evidence">
 
-Caption: Executing the obfuscated payload: powershell.exe -EncodedCommand...
 
 Step 3: Detection (The Hunt) Using Microsoft Sentinel, I wrote a KQL query to hunt for the specific execution pattern. I filtered for Event ID 4688 (Process Creation) and searched for the "-EncodedCommand" parameter, which is a high-fidelity indicator of this technique.
 
-https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/KQL%20hunt%20output.png
+<img src="https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/KQL%20hunt%20output.png" width="800" alt="Detection Evidence">
 
+Lessons Learned 
+
+Log Latency: I learned that Azure Arc agents cache logs locally if the connection drops (e.g., due to time drift), ensuring data integrity once the connection is restored.
+
+The Importance of Field Mapping: The detection was only possible because I explicitly configured the Data Collection Rule (DCR) to forward "Security Events," proving that a SIEM is only as good as its data sources.
