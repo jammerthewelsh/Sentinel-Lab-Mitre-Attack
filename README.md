@@ -31,3 +31,5 @@ Lessons Learned
 Log Latency: I learned that Azure Arc agents cache logs locally if the connection drops (e.g., due to time drift), ensuring data integrity once the connection is restored.
 
 The Importance of Field Mapping: The detection was only possible because I explicitly configured the Data Collection Rule (DCR) to forward "Security Events," proving that a SIEM is only as good as its data sources.
+
+Once complete all instances and resources in Azure were deleted to prevemt unnecassry costs continuing unchecked
