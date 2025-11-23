@@ -20,6 +20,6 @@ Caption: Enabling Command Line Auditing to capture full argument strings.
 
 Step 2: The Attack (Simulation) I simulated an adversary using Base64 encoding to obfuscate a PowerShell command. This technique allows attackers to hide their actual intent (e.g., downloading malware) from basic text-based filters.
 
-[Insert your "I am an attacker" PowerShell Screenshot here]
+(https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/powershell%20simulated%20attack.png)
 
 Caption: Executing the obfuscated payload: powershell.exe -EncodedCommand...
