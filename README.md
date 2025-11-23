@@ -23,3 +23,8 @@ Step 2: The Attack (Simulation) I simulated an adversary using Base64 encoding t
 (https://github.com/jammerthewelsh/Sentinel-Lab-Mitre-Attack/blob/main/powershell%20simulated%20attack.png)
 
 Caption: Executing the obfuscated payload: powershell.exe -EncodedCommand...
+
+Step 3: Detection (The Hunt) Using Microsoft Sentinel, I wrote a KQL query to hunt for the specific execution pattern. I filtered for Event ID 4688 (Process Creation) and searched for the "-EncodedCommand" parameter, which is a high-fidelity indicator of this technique.
+
+[Insert your final Sentinel Log Result Screenshot here]
+
